@@ -1,9 +1,10 @@
 import { useState, useRef, useEffect } from "react";
+import { useTranslation } from "react-i18next";
 import FullCalendar from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import timeGridPlugin from "@fullcalendar/timegrid";
 import interactionPlugin from "@fullcalendar/interaction";
-import { EventInput, DateSelectArg, EventClickArg } from "@fullcalendar/core";
+import { EventInput, DateSelectArg, EventClickArg, EventContentArg } from "@fullcalendar/core";
 import { Modal } from "../components/ui/modal";
 import { useModal } from "../hooks/useModal";
 import PageMeta from "../components/common/PageMeta";
@@ -15,6 +16,7 @@ interface CalendarEvent extends EventInput {
 }
 
 const Calendar: React.FC = () => {
+  const { t } = useTranslation();
   const [selectedEvent, setSelectedEvent] = useState<CalendarEvent | null>(
     null
   );
@@ -118,10 +120,10 @@ const Calendar: React.FC = () => {
   return (
     <>
       <PageMeta
-        title="React.js Calendar Dashboard | TailAdmin - Next.js Admin Dashboard Template"
-        description="This is React.js Calendar Dashboard page for TailAdmin - React.js Tailwind CSS Admin Dashboard Template"
+        title={t("pages.calendar.title")}
+        description={t("pages.calendar.description")}
       />
-      <div className="rounded-2xl border  border-gray-200 bg-white dark:border-gray-800 dark:bg-white/[0.03]">
+      <div className="rounded-2xl border border-gray-200 bg-white dark:border-strokedark dark:bg-boxdark">
         <div className="custom-calendar">
           <FullCalendar
             ref={calendarRef}
@@ -139,7 +141,7 @@ const Calendar: React.FC = () => {
             eventContent={renderEventContent}
             customButtons={{
               addEventButton: {
-                text: "Add Event +",
+                text: t("calendar.addEvent"),
                 click: openModal,
               },
             }}
@@ -153,18 +155,17 @@ const Calendar: React.FC = () => {
           <div className="flex flex-col px-2 overflow-y-auto custom-scrollbar">
             <div>
               <h5 className="mb-2 font-semibold text-gray-800 modal-title text-theme-xl dark:text-white/90 lg:text-2xl">
-                {selectedEvent ? "Edit Event" : "Add Event"}
+                {selectedEvent ? t("calendar.editEvent") : t("calendar.addEvent")}
               </h5>
               <p className="text-sm text-gray-500 dark:text-gray-400">
-                Plan your next big moment: schedule or edit an event to stay on
-                track
+                {t("calendar.modalDescription")}
               </p>
             </div>
             <div className="mt-8">
               <div>
                 <div>
                   <label className="mb-1.5 block text-sm font-medium text-gray-700 dark:text-gray-400">
-                    Event Title
+                    {t("calendar.eventTitle")}
                   </label>
                   <input
                     id="event-title"
@@ -177,7 +178,7 @@ const Calendar: React.FC = () => {
               </div>
               <div className="mt-6">
                 <label className="block mb-4 text-sm font-medium text-gray-700 dark:text-gray-400">
-                  Event Color
+                  {t("calendar.eventColor")}
                 </label>
                 <div className="flex flex-wrap items-center gap-4 sm:gap-5">
                   {Object.entries(calendarsEvents).map(([key, value]) => (
@@ -217,7 +218,7 @@ const Calendar: React.FC = () => {
 
               <div className="mt-6">
                 <label className="mb-1.5 block text-sm font-medium text-gray-700 dark:text-gray-400">
-                  Enter Start Date
+                  {t("calendar.startDate")}
                 </label>
                 <div className="relative">
                   <input
@@ -232,7 +233,7 @@ const Calendar: React.FC = () => {
 
               <div className="mt-6">
                 <label className="mb-1.5 block text-sm font-medium text-gray-700 dark:text-gray-400">
-                  Enter End Date
+                  {t("calendar.endDate")}
                 </label>
                 <div className="relative">
                   <input
@@ -251,14 +252,14 @@ const Calendar: React.FC = () => {
                 type="button"
                 className="flex w-full justify-center rounded-lg border border-gray-300 bg-white px-4 py-2.5 text-sm font-medium text-gray-700 hover:bg-gray-50 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-white/[0.03] sm:w-auto"
               >
-                Close
+                {t("common.close")}
               </button>
               <button
                 onClick={handleAddOrUpdateEvent}
                 type="button"
                 className="btn btn-success btn-update-event flex w-full justify-center rounded-lg bg-brand-500 px-4 py-2.5 text-sm font-medium text-white hover:bg-brand-600 sm:w-auto"
               >
-                {selectedEvent ? "Update Changes" : "Add Event"}
+                {selectedEvent ? t("calendar.updateChanges") : t("calendar.addEvent")}
               </button>
             </div>
           </div>
@@ -268,7 +269,7 @@ const Calendar: React.FC = () => {
   );
 };
 
-const renderEventContent = (eventInfo: any) => {
+const renderEventContent = (eventInfo: EventContentArg) => {
   const colorClass = `fc-bg-${eventInfo.event.extendedProps.calendar.toLowerCase()}`;
   return (
     <div

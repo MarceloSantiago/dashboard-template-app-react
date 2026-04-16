@@ -1,9 +1,11 @@
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 import { DropdownItem } from "../ui/dropdown/DropdownItem";
 import { Dropdown } from "../ui/dropdown/Dropdown";
 import { Link } from "react-router";
 
 export default function UserDropdown() {
+  const { t } = useTranslation();
   const [isOpen, setIsOpen] = useState(false);
 
   function toggleDropdown() {
@@ -81,7 +83,7 @@ export default function UserDropdown() {
                   fill=""
                 />
               </svg>
-              Edit profile
+              {t("userDropdown.myProfile")}
             </DropdownItem>
           </li>
           <li>
@@ -106,7 +108,7 @@ export default function UserDropdown() {
                   fill=""
                 />
               </svg>
-              Account settings
+              {t("userDropdown.settings")}
             </DropdownItem>
           </li>
           <li>
@@ -131,7 +133,7 @@ export default function UserDropdown() {
                   fill=""
                 />
               </svg>
-              Support
+              {t("userDropdown.help")}
             </DropdownItem>
           </li>
         </ul>
@@ -154,7 +156,7 @@ export default function UserDropdown() {
               fill=""
             />
           </svg>
-          Sign out
+          {t("userDropdown.logout")}
         </Link>
       </Dropdown>
     </div>

@@ -1,3 +1,4 @@
+import { useTranslation } from "react-i18next";
 import PageBreadcrumb from "../../components/common/PageBreadCrumb";
 import Badge from "../../components/ui/badge/Badge";
 import { PlusIcon } from "../../icons";
@@ -5,163 +6,165 @@ import PageMeta from "../../components/common/PageMeta";
 import ComponentCard from "../../components/common/ComponentCard";
 
 export default function Badges() {
+  const { t } = useTranslation();
+
   return (
     <div>
       <PageMeta
-        title="React.js Badges Dashboard | TailAdmin - React.js Admin Dashboard Template"
-        description="This is React.js Badges Dashboard page for TailAdmin - React.js Tailwind CSS Admin Dashboard Template"
+        title={t("pages.badges.title")}
+        description={t("pages.badges.description")}
       />
-      <PageBreadcrumb pageTitle="Badges" />
+      <PageBreadcrumb pageTitle={t("pages.badges.title")} />
       <div className="space-y-5 sm:space-y-6">
-        <ComponentCard title="With Light Background">
+        <ComponentCard title={t("ui.badges.withLightBackground")}>
           <div className="flex flex-wrap gap-4 sm:items-center sm:justify-center">
             {/* Light Variant */}
             <Badge variant="light" color="primary">
-              Primary
+              {t("ui.badges.primary")}
             </Badge>
             <Badge variant="light" color="success">
-              Success
+              {t("ui.badges.success")}
             </Badge>{" "}
             <Badge variant="light" color="error">
-              Error
+              {t("ui.badges.danger")}
             </Badge>{" "}
             <Badge variant="light" color="warning">
-              Warning
+              {t("ui.badges.warning")}
             </Badge>{" "}
             <Badge variant="light" color="info">
-              Info
+              {t("ui.badges.info")}
             </Badge>
             <Badge variant="light" color="light">
-              Light
+              {t("ui.badges.light")}
             </Badge>
             <Badge variant="light" color="dark">
-              Dark
+              {t("ui.badges.dark")}
             </Badge>
           </div>
         </ComponentCard>
-        <ComponentCard title="With Solid Background">
+        <ComponentCard title={t("ui.badges.withSolidBackground")}>
           <div className="flex flex-wrap gap-4 sm:items-center sm:justify-center">
             {/* Light Variant */}
             <Badge variant="solid" color="primary">
-              Primary
+              {t("ui.badges.primary")}
             </Badge>
             <Badge variant="solid" color="success">
-              Success
+              {t("ui.badges.success")}
             </Badge>{" "}
             <Badge variant="solid" color="error">
-              Error
+              {t("ui.badges.danger")}
             </Badge>{" "}
             <Badge variant="solid" color="warning">
-              Warning
+              {t("ui.badges.warning")}
             </Badge>{" "}
             <Badge variant="solid" color="info">
-              Info
+              {t("ui.badges.info")}
             </Badge>
             <Badge variant="solid" color="light">
-              Light
+              {t("ui.badges.light")}
             </Badge>
             <Badge variant="solid" color="dark">
-              Dark
+              {t("ui.badges.dark")}
             </Badge>
           </div>
         </ComponentCard>
-        <ComponentCard title="Light Background with Left Icon">
+        <ComponentCard title={t("ui.badges.lightBackgroundWithLeftIcon")}>
           <div className="flex flex-wrap gap-4 sm:items-center sm:justify-center">
             <Badge variant="light" color="primary" startIcon={<PlusIcon />}>
-              Primary
+              {t("ui.badges.primary")}
             </Badge>
             <Badge variant="light" color="success" startIcon={<PlusIcon />}>
-              Success
+              {t("ui.badges.success")}
             </Badge>{" "}
             <Badge variant="light" color="error" startIcon={<PlusIcon />}>
-              Error
+              {t("ui.badges.danger")}
             </Badge>{" "}
             <Badge variant="light" color="warning" startIcon={<PlusIcon />}>
-              Warning
+              {t("ui.badges.warning")}
             </Badge>{" "}
             <Badge variant="light" color="info" startIcon={<PlusIcon />}>
-              Info
+              {t("ui.badges.info")}
             </Badge>
             <Badge variant="light" color="light" startIcon={<PlusIcon />}>
-              Light
+              {t("ui.badges.light")}
             </Badge>
             <Badge variant="light" color="dark" startIcon={<PlusIcon />}>
-              Dark
+              {t("ui.badges.dark")}
             </Badge>
           </div>
         </ComponentCard>
-        <ComponentCard title="Solid Background with Left Icon">
+        <ComponentCard title={t("ui.badges.solidBackgroundWithLeftIcon")}>
           <div className="flex flex-wrap gap-4 sm:items-center sm:justify-center">
             <Badge variant="solid" color="primary" startIcon={<PlusIcon />}>
-              Primary
+              {t("ui.badges.primary")}
             </Badge>
             <Badge variant="solid" color="success" startIcon={<PlusIcon />}>
-              Success
+              {t("ui.badges.success")}
             </Badge>{" "}
             <Badge variant="solid" color="error" startIcon={<PlusIcon />}>
-              Error
+              {t("ui.badges.danger")}
             </Badge>{" "}
             <Badge variant="solid" color="warning" startIcon={<PlusIcon />}>
-              Warning
+              {t("ui.badges.warning")}
             </Badge>{" "}
             <Badge variant="solid" color="info" startIcon={<PlusIcon />}>
-              Info
+              {t("ui.badges.info")}
             </Badge>
             <Badge variant="solid" color="light" startIcon={<PlusIcon />}>
-              Light
+              {t("ui.badges.light")}
             </Badge>
             <Badge variant="solid" color="dark" startIcon={<PlusIcon />}>
-              Dark
+              {t("ui.badges.dark")}
             </Badge>
           </div>
         </ComponentCard>
-        <ComponentCard title="Light Background with Right Icon">
+        <ComponentCard title={t("ui.badges.lightBackgroundWithRightIcon")}>
           <div className="flex flex-wrap gap-4 sm:items-center sm:justify-center">
             <Badge variant="light" color="primary" endIcon={<PlusIcon />}>
-              Primary
+              {t("ui.badges.primary")}
             </Badge>
             <Badge variant="light" color="success" endIcon={<PlusIcon />}>
-              Success
+              {t("ui.badges.success")}
             </Badge>{" "}
             <Badge variant="light" color="error" endIcon={<PlusIcon />}>
-              Error
+              {t("ui.badges.danger")}
             </Badge>{" "}
             <Badge variant="light" color="warning" endIcon={<PlusIcon />}>
-              Warning
+              {t("ui.badges.warning")}
             </Badge>{" "}
             <Badge variant="light" color="info" endIcon={<PlusIcon />}>
-              Info
+              {t("ui.badges.info")}
             </Badge>
             <Badge variant="light" color="light" endIcon={<PlusIcon />}>
-              Light
+              {t("ui.badges.light")}
             </Badge>
             <Badge variant="light" color="dark" endIcon={<PlusIcon />}>
-              Dark
+              {t("ui.badges.dark")}
             </Badge>
           </div>
         </ComponentCard>
-        <ComponentCard title="Solid Background with Right Icon">
+        <ComponentCard title={t("ui.badges.solidBackgroundWithRightIcon")}>
           <div className="flex flex-wrap gap-4 sm:items-center sm:justify-center">
             <Badge variant="solid" color="primary" endIcon={<PlusIcon />}>
-              Primary
+              {t("ui.badges.primary")}
             </Badge>
             <Badge variant="solid" color="success" endIcon={<PlusIcon />}>
-              Success
+              {t("ui.badges.success")}
             </Badge>{" "}
             <Badge variant="solid" color="error" endIcon={<PlusIcon />}>
-              Error
+              {t("ui.badges.danger")}
             </Badge>{" "}
             <Badge variant="solid" color="warning" endIcon={<PlusIcon />}>
-              Warning
+              {t("ui.badges.warning")}
             </Badge>{" "}
             <Badge variant="solid" color="info" endIcon={<PlusIcon />}>
-              Info
+              {t("ui.badges.info")}
             </Badge>
             <Badge variant="solid" color="light" endIcon={<PlusIcon />}>
-              Light
+              {t("ui.badges.light")}
             </Badge>
             <Badge variant="solid" color="dark" endIcon={<PlusIcon />}>
-              Dark
+              {t("ui.badges.dark")}
             </Badge>
           </div>
         </ComponentCard>

@@ -1,18 +1,21 @@
+import { useTranslation } from "react-i18next";
 import PageBreadcrumb from "../../components/common/PageBreadCrumb";
 import ComponentCard from "../../components/common/ComponentCard";
 import BarChartOne from "../../components/charts/bar/BarChartOne";
 import PageMeta from "../../components/common/PageMeta";
 
 export default function BarChart() {
+  const { t } = useTranslation();
+
   return (
     <div>
       <PageMeta
-        title="React.js Chart Dashboard | TailAdmin - React.js Admin Dashboard Template"
-        description="This is React.js Chart Dashboard page for TailAdmin - React.js Tailwind CSS Admin Dashboard Template"
+        title={t("pages.barChart.title")}
+        description={t("pages.barChart.description")}
       />
-      <PageBreadcrumb pageTitle="Bar Chart" />
+      <PageBreadcrumb pageTitle={t("pages.barChart.title")} />
       <div className="space-y-6">
-        <ComponentCard title="Bar Chart 1">
+        <ComponentCard title={`${t("pages.barChart.title")} 1`}>
           <BarChartOne />
         </ComponentCard>
       </div>

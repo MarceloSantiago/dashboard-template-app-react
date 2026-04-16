@@ -171,7 +171,7 @@ const MultiSelect: React.FC<MultiSelectProps> = ({
                     );
                   })
                 ) : (
-                  <div className="w-full h-full p-1 pr-2 text-sm text-gray-400 dark:text-gray-500 pointer-events-none">
+                  <div className="w-full h-full p-1 pr-2 text-sm text-gray-400 dark:text-gray-400 pointer-events-none">
                     {placeholder}
                   </div>
                 )}

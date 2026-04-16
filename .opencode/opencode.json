@@ -1,0 +1,21 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "agent": {
+    "build": {
+      "mode": "primary",
+      "description": "Agente principal para desenvolvimento com todas as ferramentas habilitadas"
+    },
+    "plan": {
+      "mode": "primary",
+      "description": "Agente para planejamento e análise sem fazer alterações",
+      "tools": {
+        "Read": true,
+        "Grep": true,
+        "Glob": true,
+        "Bash": false,
+        "Edit": false,
+        "Write": false
+      }
+    }
+  }
+}

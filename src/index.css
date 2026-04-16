@@ -8,6 +8,8 @@ layer(base);
 @theme {
   --font-*: initial;
   --font-outfit: Outfit, sans-serif;
+  --font-satoshi: "Satoshi", sans-serif;
+  --font-inter: "Inter", sans-serif;
 
   --breakpoint-*: initial;
   --breakpoint-2xsm: 375px;
@@ -53,6 +55,28 @@ layer(base);
   --color-brand-800: #252dae;
   --color-brand-900: #262e89;
   --color-brand-950: #161950;
+
+  --color-boxdark: #1a2231;
+  --color-strokedark: #2a2f3c;
+  --color-meta-4: #475467;
+  --color-bodydark: #e2e8f0;
+
+  --color-gray-25: #fcfcfd;
+  --color-gray-50: #f9fafb;
+  --color-gray-100: #f2f4f7;
+  --color-gray-200: #e4e7ec;
+  --color-gray-300: #d0d5dd;
+  --color-gray-400: #98a2b3;
+  --color-gray-500: #667085;
+  --color-gray-600: #475467;
+  --color-gray-700: #344054;
+  --color-gray-800: #1d2939;
+  --color-gray-900: #101828;
+  --color-gray-950: #0c111d;
+  --color-gray-dark: #1a2231;
+
+  --color-stroke: #e4e7ec;
+  --color-stroke-dark: #2a2f3c;
 
   --color-blue-light-25: #f5fbff;
   --color-blue-light-50: #f0f9ff;
@@ -186,7 +210,10 @@ layer(base);
     cursor: pointer;
   }
   body {
-    @apply relative font-normal font-outfit z-1 bg-gray-50;
+    @apply relative font-inter z-1 bg-gray-50 dark:bg-boxdark;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-satoshi font-bold;
   }
 }
 

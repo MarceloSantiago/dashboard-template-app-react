@@ -1,3 +1,4 @@
+import { useTranslation } from "react-i18next";
 import ComponentCard from "../../components/common/ComponentCard";
 import PageBreadcrumb from "../../components/common/PageBreadCrumb";
 import PageMeta from "../../components/common/PageMeta";
@@ -5,110 +6,112 @@ import Button from "../../components/ui/button/Button";
 import { BoxIcon } from "../../icons";
 
 export default function Buttons() {
+  const { t } = useTranslation();
+
   return (
     <div>
       <PageMeta
-        title="React.js Buttons Dashboard | TailAdmin - React.js Admin Dashboard Template"
-        description="This is React.js Buttons Dashboard page for TailAdmin - React.js Tailwind CSS Admin Dashboard Template"
+        title={t("pages.buttons.title")}
+        description={t("pages.buttons.description")}
       />
-      <PageBreadcrumb pageTitle="Buttons" />
+      <PageBreadcrumb pageTitle={t("pages.buttons.title")} />
       <div className="space-y-5 sm:space-y-6">
         {/* Primary Button */}
-        <ComponentCard title="Primary Button">
+        <ComponentCard title={t("ui.buttons.primary")}>
           <div className="flex items-center gap-5">
             <Button size="sm" variant="primary">
-              Button Text
+              {t("ui.buttons.primary")}
             </Button>
             <Button size="md" variant="primary">
-              Button Text
+              {t("ui.buttons.primary")}
             </Button>
           </div>
         </ComponentCard>
         {/* Primary Button with Start Icon */}
-        <ComponentCard title="Primary Button with Left Icon">
+        <ComponentCard title={`${t("ui.buttons.primary")} ${t("ui.buttons.withLeftIcon")}`}>
           <div className="flex items-center gap-5">
             <Button
               size="sm"
               variant="primary"
               startIcon={<BoxIcon className="size-5" />}
             >
-              Button Text
+              {t("ui.buttons.primary")}
             </Button>
             <Button
               size="md"
               variant="primary"
               startIcon={<BoxIcon className="size-5" />}
             >
-              Button Text
+              {t("ui.buttons.primary")}
             </Button>
           </div>
         </ComponentCard>
         {/* Primary Button with Start Icon */}
-        <ComponentCard title="Primary Button with Right Icon">
+        <ComponentCard title={`${t("ui.buttons.primary")} ${t("ui.buttons.withRightIcon")}`}>
           <div className="flex items-center gap-5">
             <Button
               size="sm"
               variant="primary"
               endIcon={<BoxIcon className="size-5" />}
             >
-              Button Text
+              {t("ui.buttons.primary")}
             </Button>
             <Button
               size="md"
               variant="primary"
               endIcon={<BoxIcon className="size-5" />}
             >
-              Button Text
+              {t("ui.buttons.primary")}
             </Button>
           </div>
         </ComponentCard>
         {/* Outline Button */}
-        <ComponentCard title="Secondary Button">
+        <ComponentCard title={t("ui.buttons.secondary")}>
           <div className="flex items-center gap-5">
             {/* Outline Button */}
             <Button size="sm" variant="outline">
-              Button Text
+              {t("ui.buttons.outline")}
             </Button>
             <Button size="md" variant="outline">
-              Button Text
+              {t("ui.buttons.outline")}
             </Button>
           </div>
         </ComponentCard>
         {/* Outline Button with Start Icon */}
-        <ComponentCard title="Outline Button with Left Icon">
+        <ComponentCard title={`${t("ui.buttons.outline")} ${t("ui.buttons.withLeftIcon")}`}>
           <div className="flex items-center gap-5">
             <Button
               size="sm"
               variant="outline"
               startIcon={<BoxIcon className="size-5" />}
             >
-              Button Text
+              {t("ui.buttons.outline")}
             </Button>
             <Button
               size="md"
               variant="outline"
               startIcon={<BoxIcon className="size-5" />}
             >
-              Button Text
+              {t("ui.buttons.outline")}
             </Button>
           </div>
         </ComponentCard>{" "}
         {/* Outline Button with Start Icon */}
-        <ComponentCard title="Outline Button with Right Icon">
+        <ComponentCard title={`${t("ui.buttons.outline")} ${t("ui.buttons.withRightIcon")}`}>
           <div className="flex items-center gap-5">
             <Button
               size="sm"
               variant="outline"
               endIcon={<BoxIcon className="size-5" />}
             >
-              Button Text
+              {t("ui.buttons.outline")}
             </Button>
             <Button
               size="md"
               variant="outline"
               endIcon={<BoxIcon className="size-5" />}
             >
-              Button Text
+              {t("ui.buttons.outline")}
             </Button>
           </div>
         </ComponentCard>

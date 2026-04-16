@@ -1,25 +1,25 @@
+import { useTranslation } from "react-i18next";
 import PageBreadcrumb from "../components/common/PageBreadCrumb";
 import PageMeta from "../components/common/PageMeta";
 
 export default function Blank() {
+  const { t } = useTranslation();
+
   return (
     <div>
       <PageMeta
-        title="React.js Blank Dashboard | TailAdmin - Next.js Admin Dashboard Template"
-        description="This is React.js Blank Dashboard page for TailAdmin - React.js Tailwind CSS Admin Dashboard Template"
+        title={t("pages.blank.title")}
+        description={t("pages.blank.description")}
       />
-      <PageBreadcrumb pageTitle="Blank Page" />
-      <div className="min-h-screen rounded-2xl border border-gray-200 bg-white px-5 py-7 dark:border-gray-800 dark:bg-white/[0.03] xl:px-10 xl:py-12">
-        <div className="mx-auto w-full max-w-[630px] text-center">
-          <h3 className="mb-4 font-semibold text-gray-800 text-theme-xl dark:text-white/90 sm:text-2xl">
-            Card Title Here
-          </h3>
-
-          <p className="text-sm text-gray-500 dark:text-gray-400 sm:text-base">
-            Start putting content on grids or panels, you can also use different
-            combinations of grids.Please check out the dashboard and other pages
-          </p>
-        </div>
+      <PageBreadcrumb pageTitle={t("pages.blank.title")} />
+      <div className="rounded-sm border border-stroke bg-white p-6 shadow-sm dark:border-strokedark dark:bg-boxdark">
+        <h1 className="mb-4 text-xl font-bold text-boxdark dark:text-white">
+          {t("pages.blank.title")}
+        </h1>
+        <p className="text-gray-400 dark:text-gray-400">
+          {t("pages.blank.description")}. You can use components from{" "}
+          <code className="rounded bg-gray-100 px-2 py-1 text-sm dark:bg-meta-4">src/components/ui/</code>
+        </p>
       </div>
     </div>
   );
