@@ -1,10 +1,10 @@
-# Antigravity Kit Architecture
+﻿# Antigravity Kit Architecture
 
 > Comprehensive AI Agent Capability Expansion Toolkit
 
 ---
 
-## 📋 Overview
+## ­ƒôï Overview
 
 Antigravity Kit is a modular system consisting of:
 
@@ -14,21 +14,21 @@ Antigravity Kit is a modular system consisting of:
 
 ---
 
-## 🏗️ Directory Structure
+## ­ƒÅù´©Å Directory Structure
 
 ```plaintext
 .agent/
-├── ARCHITECTURE.md          # This file
-├── agents/                  # 20 Specialist Agents
-├── skills/                  # 36 Skills
-├── workflows/               # 11 Slash Commands
-├── rules/                   # Global Rules
-└── scripts/                 # Master Validation Scripts
+Ôö£ÔöÇÔöÇ ARCHITECTURE.md          # This file
+Ôö£ÔöÇÔöÇ agents/                  # 20 Specialist Agents
+Ôö£ÔöÇÔöÇ skills/                  # 36 Skills
+Ôö£ÔöÇÔöÇ workflows/               # 11 Slash Commands
+Ôö£ÔöÇÔöÇ rules/                   # Global Rules
+ÔööÔöÇÔöÇ scripts/                 # Master Validation Scripts
 ```
 
 ---
 
-## 🤖 Agents (20)
+## ­ƒñû Agents (20)
 
 Specialist AI personas for different domains.
 
@@ -57,7 +57,7 @@ Specialist AI personas for different domains.
 
 ---
 
-## 🧩 Skills (36)
+## ­ƒº® Skills (36)
 
 Modular knowledge domains that agents can load on-demand. based on task context.
 
@@ -168,7 +168,7 @@ Modular knowledge domains that agents can load on-demand. based on task context.
 
 ---
 
-## 🔄 Workflows (11)
+## ­ƒöä Workflows (11)
 
 Slash command procedures. Invoke with `/command`.
 
@@ -188,13 +188,13 @@ Slash command procedures. Invoke with `/command`.
 
 ---
 
-## 🎯 Skill Loading Protocol
+## ­ƒÄ» Skill Loading Protocol
 
 ```plaintext
-User Request → Skill Description Match → Load SKILL.md
-                                            ↓
+User Request ÔåÆ Skill Description Match ÔåÆ Load SKILL.md
+                                            Ôåô
                                     Read references/
-                                            ↓
+                                            Ôåô
                                     Read scripts/
 ```
 
@@ -202,10 +202,10 @@ User Request → Skill Description Match → Load SKILL.md
 
 ```plaintext
 skill-name/
-├── SKILL.md           # (Required) Metadata & instructions
-├── scripts/           # (Optional) Python/Bash scripts
-├── references/        # (Optional) Templates, docs
-└── assets/            # (Optional) Images, logos
+Ôö£ÔöÇÔöÇ SKILL.md           # (Required) Metadata & instructions
+Ôö£ÔöÇÔöÇ scripts/           # (Optional) Python/Bash scripts
+Ôö£ÔöÇÔöÇ references/        # (Optional) Templates, docs
+ÔööÔöÇÔöÇ assets/            # (Optional) Images, logos
 ```
 
 ### Enhanced Skills (with scripts/references)
@@ -217,7 +217,7 @@ skill-name/
 
 ---
 
-## � Scripts (2)
+## ´┐¢ Scripts (2)
 
 Master validation scripts that orchestrate skill-level scripts.
 
@@ -262,7 +262,7 @@ For details, see [scripts/README.md](scripts/README.md)
 
 ---
 
-## 📊 Statistics
+## ­ƒôè Statistics
 
 | Metric              | Value                         |
 | ------------------- | ----------------------------- |
@@ -274,7 +274,7 @@ For details, see [scripts/README.md](scripts/README.md)
 
 ---
 
-## 🔗 Quick Reference
+## ­ƒöù Quick Reference
 
 | Need     | Agent                 | Skills                                |
 | -------- | --------------------- | ------------------------------------- |

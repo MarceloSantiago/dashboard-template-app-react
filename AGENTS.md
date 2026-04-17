@@ -1,4 +1,4 @@
-# Project Instructions
+﻿# Project Instructions
 
 ## Project Overview
 Dashboard template application built with React and Tailwind CSS v4. Provides a comprehensive admin dashboard foundation with charts, tables, forms, and internationalization support.
@@ -16,12 +16,12 @@ Dashboard template application built with React and Tailwind CSS v4. Provides a 
 - **Validation:** Zod schemas
 
 ## Development Commands
-- `npm run dev` — Start development server
-- `npm run build` — Build for production
-- `npm run lint` — Run ESLint
-- `npm run preview` — Preview production build
-- `npm run validate-translations` — Validate i18n translation files
-- `npm run validate-darkmode` — Validate dark mode implementation
+- `npm run dev` ÔÇö Start development server
+- `npm run build` ÔÇö Build for production
+- `npm run lint` ÔÇö Run ESLint
+- `npm run preview` ÔÇö Preview production build
+- `npm run validate-translations` ÔÇö Validate i18n translation files
+- `npm run validate-darkmode` ÔÇö Validate dark mode implementation
 
 ## Architecture
 See `ARCHITECTURE.md` for details.
@@ -34,7 +34,7 @@ See `ARCHITECTURE.md` for details.
 - React Query for server state
 - Feature-based folder structure
 
-## Agents, Skills e Commands Disponíveis
+## Agents, Skills e Commands Dispon├¡veis
 - Agentes: `.opencode/agents/`
 - Skills: `.opencode/skills/`
 - Commands: `.opencode/commands/`
