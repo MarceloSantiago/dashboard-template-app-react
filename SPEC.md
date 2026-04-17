@@ -1,4 +1,4 @@
-# SPEC.md - Template SaaS Genérico (v2)
+# SPEC.md - Template SaaS Genérico (v3.0)
 
 ## 1. Conceito & Visão
 
@@ -116,6 +116,7 @@ Body:        Inter
 | Camada | Tecnologia |
 |--------|------------|
 | Frontend | React + Tailwind + Vite ✅ |
+| Data Fetching | TanStack Query ✅ |
 | Backend API | Node.js + Fastify |
 | Database | MySQL (Hostinger) |
 | ORM | Prisma |
@@ -274,9 +275,9 @@ Dashboard do Cliente:
 ## 11. Checklist de Implementação
 
 ### Fase 1: Setup (1 dia)
-- [ ] Configurar VPS
-- [ ] Setup MySQL
-- [ ] SSL
+- [x] Configurar VPS
+- [x] Setup MySQL
+- [x] SSL
 
 ### Fase 2: Backend Core (3-5 dias)
 - [ ] Fastify + Prisma
@@ -296,10 +297,15 @@ Dashboard do Cliente:
 - [ ] API Keys
 
 ### Fase 5: Frontend Core (3-5 dias)
-- [ ] Landing Page
-- [ ] Blog
-- [ ] Institucional
-- [ ] Portal Cliente
+- [x] Landing Page ✅
+- [x] Blog ✅
+- [x] Institucional ✅
+- [x] Portal Cliente ✅
+- [x] Features module structure ✅
+- [x] TanStack Query ✅
+- [x] Adapter pattern ✅
+- [x] Common components (SkeletonCard, EmptyState, PaywallOverlay, etc.) ✅
+- [x] usePlan hook ✅
 
 ### Fase 6: Customização (vária)
 - [ ] Adicionar entidades
@@ -321,24 +327,21 @@ Dashboard do Cliente:
 │   │
 │   ├── components/             # Componentes UI
 │   │   ├── ui/                # Componentes base
+│   │   ├── common/            # Componentes reutilizáveis (SkeletonCard, EmptyState, etc.)
 │   │   └── layout/            # Layout
 │   │
-│   ├── pages/                  # Páginas
-│   │   ├── landing/            # Landing page
-│   │   ├── blog/              # Blog
-│   │   ├── institutional/      # Institucional
-│   │   ├── dashboard/          # Portal cliente
-│   │   └── admin/             # Painel admin
-│   │
-│   ├── features/               # Features customizáveis
-│   │   ├── crm/                # Ex: CRM module
-│   │   ├── ecommerce/           # Ex: E-commerce module
-│   │   ├── agents/             # Ex: AI Agents module
+│   ├── features/               # ✅ Features customizáveis
+│   │   ├── _template/          # Template padrão para novos módulos
+│   │   ├── crm/               # Ex: CRM module
+│   │   ├── ecommerce/         # Ex: E-commerce module
+│   │   ├── agents/            # Ex: AI Agents module
 │   │   └── .../               # etc
 │   │
-│   ├── hooks/
+│   ├── hooks/                  # Custom hooks
 │   ├── contexts/
-│   ├── services/
+│   ├── services/               # Camada de services (API + Query Client)
+│   ├── lib/                    # Utilitários e adapters
+│   │   └── adapters/          # Padrão para integrações externas
 │   └── i18n/
 │
 ├── prisma/
@@ -349,12 +352,150 @@ Dashboard do Cliente:
 
 ---
 
+## 12.1. Padrão de Features
+
+Todo novo módulo em `src/features/[nome]/` **deve** seguir esta estrutura:
+
+```
+src/features/[nome]/
+├── components/           # Componentes React do módulo
+│   └── *.tsx
+├── hooks/               # Custom hooks (useQuery, useMutation)
+│   └── use[Nome].ts
+├── services/            # Chamadas de API (axios)
+│   └── [nome].service.ts
+├── types.ts             # Interfaces e types TypeScript
+└── index.ts             # Barrel export
+```
+
+### Exemplo de Service
+
+```typescript
+// features/_template/services/example.service.ts
+import { api } from '@/api/client'
+import type { Example } from '../types'
+
+export const exampleService = {
+  list:   (params?: Record<string, unknown>) => api.get<Example[]>('/examples', { params }),
+  get:    (id: string) => api.get<Example>(`/examples/${id}`),
+  create: (data: Partial<Example>) => api.post<Example>('/examples', data),
+  update: (id: string, data: Partial<Example>) => api.patch<Example>(`/examples/${id}`, data),
+  delete: (id: string) => api.delete(`/examples/${id}`),
+}
+```
+
+### Exemplo de Hook
+
+```typescript
+// features/_template/hooks/useExample.ts
+import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query'
+import { exampleService } from '../services/example.service'
+
+export function useExamples() {
+  return useQuery({
+    queryKey: ['examples'],
+    queryFn: async () => {
+      const { data } = await exampleService.list()
+      return data
+    },
+  })
+}
+
+export function useCreateExample() {
+  const queryClient = useQueryClient()
+  return useMutation({
+    mutationFn: exampleService.create,
+    onSuccess: () => queryClient.invalidateQueries({ queryKey: ['examples'] }),
+  })
+}
+```
+
+---
+
+## 12.2. Padrão de Adapter para Integrações Externas
+
+O template oferece um padrão genérico para conectar a qualquer serviço externo (CMS, CRM, E-commerce, etc.).
+
+### Estrutura
+
+```
+src/lib/adapters/
+├── types.ts      # Interface ExternalServiceAdapter
+└── registry.ts   # Registro central de adapters
+```
+
+### Interface Base
+
+```typescript
+// src/lib/adapters/types.ts
+export interface ExternalServiceAdapter<TCredentials = Record<string, string>> {
+  readonly name: string
+  readonly slug: string
+  readonly logoUrl: string
+  readonly category: 'cms' | 'crm' | 'analytics' | 'ecommerce' | 'other'
+  readonly requiredCredentials: CredentialField[]
+  readonly isAvailable: boolean
+
+  testConnection(credentials: TCredentials): Promise<ConnectionResult>
+}
+```
+
+### Registro
+
+```typescript
+// src/lib/adapters/registry.ts
+export const ADAPTERS: AdapterRegistry = {}
+
+export function registerAdapter(adapter: ExternalServiceAdapter): void {
+  ADAPTERS[adapter.slug] = adapter
+}
+
+export function getAdapter(slug: string): ExternalServiceAdapter {
+  return ADAPTERS[slug]
+}
+
+export function getAdaptersByCategory(category: string) {
+  return Object.values(ADAPTERS).filter(a => a.category === category)
+}
+```
+
+---
+
+## 12.3. Common Components Disponíveis
+
+| Componente | Descrição |
+|------------|-----------|
+| `SkeletonCard` | Skeleton loader configurável para loading states |
+| `EmptyState` | Empty state com ícone, título, subtítulo e CTA |
+| `PaywallOverlay` | Overlay de bloqueio de feature pro (blur + modal) |
+| `ConfirmModal` | Modal de confirmação (sim/não) |
+| `CopyButton` | Botão com feedback de "Copiado!" |
+| `StatusBadge` | Badge de status genérico (active/inactive/pending) |
+
+---
+
+## 12.4. Hooks Disponíveis
+
+| Hook | Descrição |
+|------|-----------|
+| `usePlan` | Verificação centralizada de plano (isPro, isFree, canUse) |
+| `useModal` | Controle de modal open/close |
+| `useGoBack` | Navegação de volta |
+
+---
+
 ## 13. Resumo
 
 | Item | Status |
 |------|--------|
-| **Template** | ✅ Pronto |
-| **Core funcionalidades** | ✅ Implementar |
+| **Template** | ✅ v3.0 Pronto |
+| **Features structure** | ✅ Implementado |
+| **TanStack Query** | ✅ Configurado |
+| **Adapter pattern** | ✅ Implementado |
+| **Common components** | ✅ 6 componentes |
+| **usePlan hook** | ✅ Implementado |
+| **Core funcionalidades** | ✅ Frontend pronto |
+| **Backend** | ❌ Separado |
 | **Planos e Preços** | ❌ A definir (por aplicação) |
 | **Customizável para** | Qualquer SaaS |
 | **Flexível** | Sim |
